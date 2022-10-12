@@ -6,7 +6,17 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
-/******/ (() => { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["aa"] = factory();
+	else
+		root["aa"] = factory();
+})(self, () => {
+return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/index.js":
@@ -15,7 +25,7 @@
   \**********************/
 /***/ ((module) => {
 
-eval("const createElement = (config) => {\r\n    const {id,classList = [], type = 'div',innerText,innerHTML, src, contentEditable,row, options,optionValues,multiple,size, placeholder} = config\r\n\r\n    const container = document.createElement(type);\r\n    id              ? container.id = id                                                     : '';\r\n    classList       ? classList.forEach(className => {container.classList.add(className)})  : '';\r\n    innerText       ? container.innerText = innerText                                       : '';\r\n    innerHTML       ? container.innerHTML = innerHTML                                       : '';\r\n    src             ? container.src = src                                                   : '';\r\n    contentEditable ? container.contentEditable = contentEditable                           : '';\r\n    row             ? container.row = row                                                   : '';\r\n    multiple        ? container.multiple = multiple                                         : '';\r\n    size            ? container.size = size                                                 : '';\r\n    placeholder     ? container.placeholder = placeholder                                   : '';\r\n\r\n    if (options) {\r\n        options.forEach((value, index) => {\r\n            let option = document.createElement('option');\r\n            optionValues ? option.value = optionValues[index] : option.value = value;            \r\n            option.innerText = value;\r\n            container.appendChild(option);\r\n        })\r\n    }\r\n\r\n    return container;\r\n}\r\n\r\nmodule.exports = {createElement}\n\n//# sourceURL=webpack://create-element/./src/index.js?");
+eval("const createElement = (config) => {\r\n    const {id,classList = [], type = 'div',innerText,innerHTML, src, contentEditable,row, options,optionValues,multiple,size, placeholder} = config\r\n\r\n    const container = document.createElement(type);\r\n    id              ? container.id = id                                                     : '';\r\n    classList       ? classList.forEach(className => {container.classList.add(className)})  : '';\r\n    innerText       ? container.innerText = innerText                                       : '';\r\n    innerHTML       ? container.innerHTML = innerHTML                                       : '';\r\n    src             ? container.src = src                                                   : '';\r\n    contentEditable ? container.contentEditable = contentEditable                           : '';\r\n    row             ? container.row = row                                                   : '';\r\n    multiple        ? container.multiple = multiple                                         : '';\r\n    size            ? container.size = size                                                 : '';\r\n    placeholder     ? container.placeholder = placeholder                                   : '';\r\n\r\n    if (options) {\r\n        options.forEach((value, index) => {\r\n            let option = document.createElement('option');\r\n            optionValues ? option.value = optionValues[index] : option.value = value;            \r\n            option.innerText = value;\r\n            container.appendChild(option);\r\n        })\r\n    }\r\n\r\n    return container;\r\n}\r\n\r\nmodule.exports = {createElement}\n\n//# sourceURL=webpack://aa/./src/index.js?");
 
 /***/ })
 
@@ -52,5 +62,7 @@ eval("const createElement = (config) => {\r\n    const {id,classList = [], type 
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
+});

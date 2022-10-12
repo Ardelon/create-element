@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack"
   },
-  "exports" : {
-    ".":"./src/index.js"
+  "exports": {
+    ".": "./src/index.js"
   },
   "keywords": [],
   "author": "",
