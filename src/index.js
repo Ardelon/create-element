@@ -1,40 +1,61 @@
 /**
- * @param {object} config Configurations
- * @param {string} config.id ID
- * @param {Array<String>} config.classList Classes array
- * @param {"a"|"button"|"div"|"img"|"p"|"span"} config.type Element tag
- * @param {string} config.innerText Inner text
- * @param {string} config.innerHTML Inner html
- * @param {} config.src Source
- * @param {Boolean} config.contentEditable Is content editable
- * @param {string} config.placeholder Placeholder text
+ *
+ * @param {object} config
+ * @param {string} config.tag
+ * @param {Array<String>} config.classList
+ * @param {String} config.id
+ * @param {object} config.attributeList
+ * @param {String} config.innerText
+ * @param {String} config.innerHTML
+ * @param {String} config.src
+ * @param {object} config.eventList
  * @description Create a node element with given parameters and returns it. It is used for reducing code repeating and easy creation of elements
- * @returns {Element} node object
+ * @returns {Node object}
  * @function createElement
- * @memberof Utilities
  */
+
 const createElement = (config) => {
-    const {id,classList = [], type = 'div',innerText,innerHTML, src, contentEditable,row, options,optionValues,multiple,size, placeholder} = config
+	const {
+		tag = 'div',
+		classList = [],
+		id,
+		attributeList = {},
+		innerText,
+		innerHTML,
+		src,
+		functionList = {},
+		
+	} = config;
 
-    const container = document.createElement(type);
-    id              ? container.id = id                                                     : '';
-    classList       ? classList.forEach(className => {container.classList.add(className)})  : '';
-    innerText       ? container.innerText = innerText                                       : '';
-    innerHTML       ? container.innerHTML = innerHTML                                       : '';
-    src             ? container.src = src                                                   : '';
-    contentEditable ? container.contentEditable = contentEditable                           : '';
-    placeholder     ? container.placeholder = placeholder                                   : '';
+	const element = document.createElement(tag);
+	id ? (element.id = id) : '';
 
-    if (options) {
-        options.forEach((value, index) => {
-            let option = document.createElement('option');
-            optionValues ? option.value = optionValues[index] : option.value = value;            
-            option.innerText = value;
-            container.appendChild(option);
-        })
-    }
+	const attributeListKeys = Object.keys(attributeList);
+	if (attributeListKeys.length) {
+		attributeListKeys.forEach((attribute) => {
+			element.setAttribute(attribute, attributeList[attribute]);
+		});
+	}
+	const eventListKeys = Object.keys(eventList);
+	if (eventListKeys.length) {
+		eventListKeys.forEach((event) => {
+			element.addEventListener(event, eventList[event]);
+		});
+	}
 
-    return container;
-}
+	classList
+		? classList.forEach((className) => {
+				if (className !== '' || className !== null || className !== undefined) {
+					container.classList.add(className);
+				}
+		  })
+		: '';
 
-module.exports = {createElement}
+	innerText ? (element.innerText = innerText) : '';
+	innerHTML ? (element.innerHTML = innerHTML) : '';
+	src ? (container.src = src) : '';
+
+	return element;
+};
+
+module.exports = createElement;
