@@ -23,7 +23,7 @@ const createElement = (config) => {
 		innerText,
 		innerHTML,
 		src,
-		functionList = {},
+		eventList = {},
 		
 	} = config;
 
