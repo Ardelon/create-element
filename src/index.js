@@ -16,7 +16,7 @@
 
 const createElement = (config) => {
 	const {
-		tag = 'div',
+		tag = "div",
 		classList = [],
 		id,
 		attributeList = {},
@@ -24,11 +24,10 @@ const createElement = (config) => {
 		innerHTML,
 		src,
 		eventList = {},
-		
 	} = config;
 
 	const element = document.createElement(tag);
-	id ? (element.id = id) : '';
+	id ? (element.id = id) : "";
 
 	const attributeListKeys = Object.keys(attributeList);
 	if (attributeListKeys.length) {
@@ -45,15 +44,15 @@ const createElement = (config) => {
 
 	classList
 		? classList.forEach((className) => {
-				if (className !== '' || className !== null || className !== undefined) {
+				if (className !== "" || className !== null || className !== undefined) {
 					container.classList.add(className);
 				}
 		  })
-		: '';
+		: "";
 
-	innerText ? (element.innerText = innerText) : '';
-	innerHTML ? (element.innerHTML = innerHTML) : '';
-	src ? (container.src = src) : '';
+	innerText ? (element.innerText = innerText) : "";
+	innerHTML ? (element.innerHTML = innerHTML) : "";
+	src ? (container.src = src) : "";
 
 	return element;
 };
