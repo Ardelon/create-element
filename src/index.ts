@@ -45,14 +45,14 @@ const createElement = (config) => {
 	classList
 		? classList.forEach((className) => {
 				if (className !== "" || className !== null || className !== undefined) {
-					container.classList.add(className);
+					element.classList.add(className);
 				}
 		  })
 		: "";
 
 	innerText ? (element.innerText = innerText) : "";
 	innerHTML ? (element.innerHTML = innerHTML) : "";
-	src ? (container.src = src) : "";
+	src ? (element.src = src) : "";
 
 	return element;
 };
