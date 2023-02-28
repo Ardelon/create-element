@@ -2,23 +2,23 @@
 	"name": "ardelon-create-element",
 	"version": "2.0.3",
 	"description": "",
-	"main": "index.js",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "webpack",
-		"tsc": "tsc"
+		"tsc": "tsc",
+		"tsc resolution": "tsc --traceResolution"
 	},
 	"exports": {
-		".": "./src/index.js"
+		".": "./dist/index.js"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"@types/node": "^18.14.0",
+		"typescript": "^4.9.5",
 		"webpack": "^5.74.0",
 		"webpack-cli": "^4.10.0"
-	},
-	"dependencies": {
-		"@types/node": "^18.14.0",
-		"typescript": "^4.9.5"
 	}
 }

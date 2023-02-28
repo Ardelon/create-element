@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 
 // module.exports = {
 // 	entry: './src/index.js',
@@ -10,17 +10,15 @@ const path = require('path');
 // };
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
-  output: {
-  },
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-    library : {
-      name : 'aa',
-      type : 'umd'
-    },
-  },
-
+	mode: "development",
+	entry: "./src/index.js",
+	output: {},
+	output: {
+		filename: "index.ts",
+		path: path.resolve(__dirname, "dist"),
+		library: {
+			name: "aa",
+			type: "umd",
+		},
+	},
 };
