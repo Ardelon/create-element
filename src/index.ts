@@ -1,60 +1,84 @@
-/**
- *
- * @param {object} config
- * @param {string} config.tag
- * @param {Array<String>} config.classList
- * @param {String} config.id
- * @param {object} config.attributeList
- * @param {String} config.innerText
- * @param {String} config.innerHTML
- * @param {String} config.src
- * @param {object} config.eventList
- * @description Create a node element with given parameters and returns it. It is used for reducing code repeating and easy creation of elements
- * @returns {Node object}
- * @function createElement
- */
+type AttributeList = { [key: string]: string | boolean | number | Function | Object };
+type EventList = { [key: string]: EventListener };
 
-const createElement = (config) => {
-	const {
-		tag = "div",
-		classList = [],
-		id,
-		attributeList = {},
-		innerText,
-		innerHTML,
-		src,
-		eventList = {},
-	} = config;
+export const createElement = ({
+	tag = "div",
+	classList = [],
+	id = "",
+	attributeList = {},
+	innerText = "",
+	innerHTML = "",
+	src = "",
+	eventList = {},
+}: {
+	tag?: string;
+	classList?: string[];
+	id?: string;
+	attributeList?: AttributeList;
+	innerText?: string;
+	innerHTML?: string;
+	src?: string;
+	eventList?: EventList;
+} = {}): HTMLElement => {
+	if (typeof tag !== "string") {
+		throw new Error("Invalid tag type");
+	}
 
 	const element = document.createElement(tag);
-	id ? (element.id = id) : "";
 
-	const attributeListKeys = Object.keys(attributeList);
-	if (attributeListKeys.length) {
-		attributeListKeys.forEach((attribute) => {
-			element.setAttribute(attribute, attributeList[attribute]);
-		});
-	}
-	const eventListKeys = Object.keys(eventList);
-	if (eventListKeys.length) {
-		eventListKeys.forEach((event) => {
-			element.addEventListener(event, eventList[event]);
-		});
+	try {
+		setAttributes(element, attributeList);
+		setEvents(element, eventList);
+	} catch (error) {
+		console.error("Error setting attributes or events:", error);
+		throw error;
 	}
 
-	classList
-		? classList.forEach((className) => {
-				if (className !== "" || className !== null || className !== undefined) {
-					element.classList.add(className);
-				}
-		  })
-		: "";
+	if (id && typeof id !== "string") {
+		throw new Error("Invalid ID type");
+	}
+	element.id = id;
 
-	innerText ? (element.innerText = innerText) : "";
-	innerHTML ? (element.innerHTML = innerHTML) : "";
-	src ? (element.src = src) : "";
+	if (innerText && typeof innerText !== "string") {
+		throw new Error("Invalid innerText type");
+	}
+	element.innerText = innerText;
+
+	if (innerHTML && typeof innerHTML !== "string") {
+		throw new Error("Invalid innerHTML type");
+	}
+	element.innerHTML = innerHTML;
+
+	const validClassList = classList.filter(Boolean);
+	if (validClassList.some((cls) => typeof cls !== "string")) {
+		throw new Error("Invalid classList type");
+	}
+	element.classList.add(...validClassList);
+
+	if (src && typeof src !== "string") {
+		throw new Error("Invalid src type");
+	}
+	if (src && "src" in element) {
+		(element as HTMLImageElement | HTMLScriptElement).src = src;
+	}
 
 	return element;
 };
 
-module.exports = createElement;
+function setAttributes(element: HTMLElement, attributes: AttributeList) {
+	for (const [attribute, value] of Object.entries(attributes)) {
+		if (value === null || typeof value === "undefined") {
+			throw new Error(`Invalid attribute value for ${attribute}`);
+		}
+		element.setAttribute(attribute, String(value));
+	}
+}
+
+function setEvents(element: HTMLElement, events: EventList) {
+	for (const [event, handler] of Object.entries(events)) {
+		if (typeof handler !== "function") {
+			throw new Error(`Invalid event handler for ${event}`);
+		}
+		element.addEventListener(event as keyof HTMLElementEventMap, handler);
+	}
+}
