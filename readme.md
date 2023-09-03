@@ -51,18 +51,27 @@ document.body.appendChild(mediumButton);
 ### Example 3
 
 ```javascript
-const mediumButton = createElement({
-	tag: "button",
-	innerText: "Click Me",
-	attributeList: {
-		"data-type": "mediumButton",
-	},
-	eventList: {
-		click: () => alert("Button clicked"),
-	},
+const advancedSection = createElement({
+	tag: "section",
+	classList: ["advanced-section"],
+	children: [
+		createElement({
+			tag: "img",
+			src: "https://example.com/image.jpg",
+			attributeList: { alt: "Example Image" },
+		}),
+		createElement({
+			tag: "ul",
+			children: [
+				createElement({ tag: "li", innerText: "Item 1" }),
+				createElement({ tag: "li", innerText: "Item 2" }),
+				createElement({ tag: "li", innerText: "Item 3" }),
+			],
+		}),
+	],
 });
 
-document.body.appendChild(mediumButton);
+document.body.appendChild(advancedSection);
 ```
 
 ## API
