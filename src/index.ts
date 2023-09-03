@@ -38,18 +38,21 @@ export const createElement = ({
 
 	if (id && typeof id !== "string") {
 		throw new Error("Invalid ID type");
+	} else if (id) {
+		element.id = id;
 	}
-	element.id = id;
 
 	if (innerText && typeof innerText !== "string") {
 		throw new Error("Invalid innerText type");
+	} else if (innerText) {
+		element.innerText = innerText;
 	}
-	element.innerText = innerText;
 
 	if (innerHTML && typeof innerHTML !== "string") {
 		throw new Error("Invalid innerHTML type");
+	} else if (innerHTML) {
+		element.innerHTML = innerHTML;
 	}
-	element.innerHTML = innerHTML;
 
 	const validClassList = classList.filter(Boolean);
 	if (validClassList.some((cls) => typeof cls !== "string")) {
