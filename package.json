@@ -1,6 +1,6 @@
 {
 	"name": "ardelon-create-element",
-	"version": "2.0.9",
+	"version": "2.0.10",
 	"description": "",
 	"main": "dist/index.ts",
 	"types": "dist/index.d.ts",
