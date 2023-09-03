@@ -8,7 +8,7 @@ This library provides a utility function createElement for dynamically creating 
 
 To install this package, run:
 
-```
+```bash
 npm install ardelon-create-element
 ```
 
@@ -20,31 +20,49 @@ Import the createElement function from the package:
 import { createElement } from 'ardelon-create-element';
 ```
 
-### Basic Example
+### Example 1
 
-```
-const divElement = createElement({
-  tag: 'div',
-  innerText: 'Hello, world!',
+```javascript
+const basicDiv = createElement({
+	tag: "div",
+	innerText: "This is a basic div",
 });
 
-document.body.appendChild(divElement);
+document.body.appendChild(basicDiv);
 ```
 
-### Advanced Example
+### Example 2
 
-```
-const buttonElement = createElement({
-  tag: 'button',
-  classList: ['btn', 'btn-primary'],
-  id: 'myButton',
-  innerText: 'Click Me',
-  eventList: {
-    click: () => alert('Button clicked'),
-  },
+```javascript
+const mediumButton = createElement({
+	tag: "button",
+	innerText: "Click Me",
+	attributeList: {
+		"data-type": "mediumButton",
+	},
+	eventList: {
+		click: () => alert("Button clicked"),
+	},
 });
 
-document.body.appendChild(buttonElement);
+document.body.appendChild(mediumButton);
+```
+
+### Example 3
+
+```javascript
+const mediumButton = createElement({
+	tag: "button",
+	innerText: "Click Me",
+	attributeList: {
+		"data-type": "mediumButton",
+	},
+	eventList: {
+		click: () => alert("Button clicked"),
+	},
+});
+
+document.body.appendChild(mediumButton);
 ```
 
 ## API
@@ -61,6 +79,7 @@ document.body.appendChild(buttonElement);
 - `innerHTML`: Inner HTML of the element.
 - `src`: Source URL for elements like `<img>` and `<script>`.
 - `eventList`: Object containing event listeners to attach.
+- `children` : Array of children HTML Elements
 
 #### Types
 

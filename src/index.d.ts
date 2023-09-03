@@ -12,6 +12,7 @@ export interface CreateElementConfig {
 	innerHTML?: string;
 	src?: string;
 	eventList?: EventList;
+	children?: HTMLElement[];
 }
 
 export function createElement(config?: CreateElementConfig): HTMLElement;

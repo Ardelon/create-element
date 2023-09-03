@@ -10,6 +10,7 @@ export const createElement = ({
 	innerHTML = "",
 	src = "",
 	eventList = {},
+	children = [],
 }: {
 	tag?: string;
 	classList?: string[];
@@ -19,6 +20,7 @@ export const createElement = ({
 	innerHTML?: string;
 	src?: string;
 	eventList?: EventList;
+	children?: HTMLElement[];
 } = {}): HTMLElement => {
 	if (typeof tag !== "string") {
 		throw new Error("Invalid tag type");
@@ -60,6 +62,17 @@ export const createElement = ({
 	}
 	if (src && "src" in element) {
 		(element as HTMLImageElement | HTMLScriptElement).src = src;
+	}
+
+	// Append children if any
+	if (Array.isArray(children)) {
+		children.forEach((child) => {
+			if (child instanceof HTMLElement) {
+				element.appendChild(child);
+			} else {
+				throw new Error("Invalid child element");
+			}
+		});
 	}
 
 	return element;
