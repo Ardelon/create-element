@@ -3,6 +3,7 @@
   "version": "2.0.11",
   "main": "dist/index.ts",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/Ardelon/create-element",
   "scripts": {
     "build": "webpack",
     "tsc": "tsc",
