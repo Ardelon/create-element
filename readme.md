@@ -4,6 +4,8 @@
 
 This library provides a utility function createElement for dynamically creating HTML elements in TypeScript. It allows you to set various attributes, event listeners, and other properties in a type-safe manner.
 
+- [Github](https://github.com/Ardelon/create-element)
+
 ## Installation
 
 To install this package, run:
